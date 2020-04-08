@@ -38,6 +38,113 @@
     <script src="./js/bd.js"></script>
 </head>
 <body>
+<header>
+    <div class="collapse bg-dark" id="navbarHeader">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-8 col-md-7 py-4">
+                    <h4 class="text-white">WorkHabit</h4>
+                    <p class="text-muted">WorkHabit és una aplicació que proporciona consells perquè les persones que fem Teletreball tinguem una millor experiència i no perdem hàbits saludables. Des de pauses per descansar fins a pauses per fer estiraments seran els missatges que et proporcionarà l'aplicació de forma intel·ligent acontant el teu horari laboral. Gaudeix del teletreball amb WorkHabit.</p>
+                </div>
+                <div class="col-sm-4 offset-md-1 py-4">
+                    <h4 class="text-white">Contacta'ns</h4>
+                    <ul class="list-unstyled">
+                        <li><a href="mailto:suport@workhabit.cat" class="text-white">Suport</a></li>
+                        <li><a href="#" class="text-white">Facebook</a></li>
+                        <li><a href="#" class="text-white">Twitter</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="navbar navbar-dark bg-dark shadow-sm">
+        <div class="container d-flex justify-content-between">
+            <a href="#" class="navbar-brand d-flex align-items-center">
+                <img src="./img/logo-negatiu-workhabit.png" height="30"/>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+    </div>
+</header>
+
+<main role="main">
+
+    <section class="jumbotron text-center">
+        <div class="container">
+            <h1>Treballa saludablement</h1>
+            <p class="lead text-muted">Aplicació amb consells per teletreballar més saludablement</p>
+            <p>
+                <a href="#" class="btn btn-primary my-2">Configuració</a>
+                <a href="#" class="btn btn-secondary my-2">Borrar configuració</a>
+            </p>
+        </div>
+    </section>
+
+    <div class="album py-5 bg-light">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card mb-4 shadow-sm">
+                        <img src="./img/people-exercise-fit-fitness.jpg" style="width:100%;" alt="Fes exercici"/>
+                        <div class="card-body">
+                            <p class="card-text">Fes exercici</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <button id="btnExercici" type="button" class="btn btn-sm btn-outline-secondary">Veure</button>
+                                </div>
+                                <!--<small class="text-muted">9 mins</small>-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card mb-4 shadow-sm">
+                        <img src="./img/phone-call.jpg" style="width:100%;" alt="Truca a família i amics"/>
+                        <div class="card-body">
+                            <p class="card-text">Truca a família i amics</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <!--<div class="btn-group">
+                                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                                </div>-->
+                                <!--<small class="text-muted">9 mins</small>-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card mb-4 shadow-sm">
+                        <img src="./img/work-productivity.jpg" style="width:100%;" alt="Truca a família i amics"/>
+                        <div class="card-body">
+                            <p class="card-text">Concentra't, WorkHabit t'avisa quan has de parar.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-sm btn-outline-secondary">Configura</button>
+                                </div>
+                                <!--<small class="text-muted">9 mins</small>-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</main>
+
+<footer class="text-muted">
+    <div class="container">
+        <p class="float-right">
+            <!--<a href="#">A dalt</a>-->
+        </p>
+    </div>
+</footer>
+
+<script>
+    $("#btnExercici").on('click', function(e) { window.open('https://www.youtube.com/results?search_query=exercicis+relaxaci%C3%B3')} );
+</script>
 
 </body>
 </html>

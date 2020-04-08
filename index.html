@@ -37,6 +37,14 @@
 
     <script src="./js/utils.js"></script>
     <script src="./js/bd.js"></script>
+
+    <style>
+        .btn-secondary:not(:disabled):not(.disabled).active, .btn-secondary:not(:disabled):not(.disabled):active, .show>.btn-secondary.dropdown-toggle
+        {
+            background-color: #66CC00;
+            border-color: #66CC00;
+        }
+    </style>
 </head>
 <body>
 <header>
@@ -77,7 +85,7 @@
             <h1>Treballa saludablement</h1>
             <p class="lead text-muted">Aplicació amb consells per teletreballar més saludablement</p>
             <p>
-                <a href="#" class="btn btn-primary my-2">Configuració</a>
+                <a href="#" class="btn btn-primary my-2" data-toggle="modal" data-target="#configModal">Configuració</a>
                 <a href="#" class="btn btn-secondary my-2">Borrar configuració</a>
             </p>
         </div>
@@ -133,6 +141,274 @@
         </div>
     </div>
 
+    <!-- Modal Config -->
+    <div class="modal fade" id="configModal" tabindex="-1" data-backdrop="static" role="dialog" aria-labelledby="configModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document" style="max-width: 1024px;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="configModalLabel">Configuració</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-2 col-md-2">
+                            <label for="dataNaixement">Data naixement</label>
+                        </div>
+                        <div class="col-sm-4 col-md-4">
+                            <input id="dataNaixement" type="text">
+                        </div>
+                    </div>
+                    <h6>Horari laboral:</h6>
+                    <div class="row"> <!-- dilluns -->
+                        <div class="col-sm-2 col-md-2">
+                            <div class="btn-group-toggle col-sm-12 col-md-12" data-toggle="buttons">
+                                <label class="btn btn-secondary active col-sm-12 col-md-12">
+                                    <input id="dia1" type="checkbox" checked> Dilluns
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-sm-10 col-md-10">
+                            <div class="row">
+                                <div class="col-sm-2 col-md-2">
+                                    <input id="dia1-h1" type="text" class="selectorHora form-control col-sm-12 col-md-12"/>
+                                </div>
+                                <div class="col-sm-1 col-md-1">
+                                    <p align="center">-</p>
+                                </div>
+                                <div class="col-sm-2 col-md-2">
+                                    <input id="dia1-h2" type="text" class="selectorHora form-control col-sm-12 col-md-12"/>
+                                </div>
+                                <div class="col-sm-1 col-md-1">
+
+                                </div>
+                                <div class="col-sm-2 col-md-2">
+                                    <input id="dia1-h3" type="text" class="selectorHora form-control col-sm-12 col-md-12"/>
+                                </div>
+                                <div class="col-sm-1 col-md-1">
+                                    <p align="center">-</p>
+                                </div>
+                                <div class="col-sm-2 col-md-2">
+                                    <input id="dia1-h4" type="text" class="selectorHora form-control col-sm-12 col-md-12"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row"> <!-- dimarts -->
+                        <div class="col-sm-2 col-md-2">
+                            <div class="btn-group-toggle col-sm-12 col-md-12" data-toggle="buttons">
+                                <label class="btn btn-secondary active col-sm-12 col-md-12">
+                                    <input id="dia2" type="checkbox" checked> Dimarts
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-sm-10 col-md-10">
+                            <div class="row">
+                                <div class="col-sm-2 col-md-2">
+                                    <input id="dia2-h1" type="text" class="selectorHora form-control col-sm-12 col-md-12"/>
+                                </div>
+                                <div class="col-sm-1 col-md-1">
+                                    <p align="center">-</p>
+                                </div>
+                                <div class="col-sm-2 col-md-2">
+                                    <input id="dia2-h2" type="text" class="selectorHora form-control col-sm-12 col-md-12"/>
+                                </div>
+                                <div class="col-sm-1 col-md-1">
+
+                                </div>
+                                <div class="col-sm-2 col-md-2">
+                                    <input id="dia2-h3" type="text" class="selectorHora form-control col-sm-12 col-md-12"/>
+                                </div>
+                                <div class="col-sm-1 col-md-1">
+                                    <p align="center">-</p>
+                                </div>
+                                <div class="col-sm-2 col-md-2">
+                                    <input id="dia2-h4" type="text" class="selectorHora form-control col-sm-12 col-md-12"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row"> <!-- dimecres -->
+                        <div class="col-sm-2 col-md-2">
+                            <div class="btn-group-toggle col-sm-12 col-md-12" data-toggle="buttons">
+                                <label class="btn btn-secondary active col-sm-12 col-md-12">
+                                    <input id="dia3" type="checkbox" checked> Dimecres
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-sm-10 col-md-10">
+                            <div class="row">
+                                <div class="col-sm-2 col-md-2">
+                                    <input id="dia3-h1" type="text" class="selectorHora form-control col-sm-12 col-md-12"/>
+                                </div>
+                                <div class="col-sm-1 col-md-1">
+                                    <p align="center">-</p>
+                                </div>
+                                <div class="col-sm-2 col-md-2">
+                                    <input id="dia3-h2" type="text" class="selectorHora form-control col-sm-12 col-md-12"/>
+                                </div>
+                                <div class="col-sm-1 col-md-1">
+
+                                </div>
+                                <div class="col-sm-2 col-md-2">
+                                    <input id="dia3-h3" type="text" class="selectorHora form-control col-sm-12 col-md-12"/>
+                                </div>
+                                <div class="col-sm-1 col-md-1">
+                                    <p align="center">-</p>
+                                </div>
+                                <div class="col-sm-2 col-md-2">
+                                    <input id="dia3-h4" type="text" class="selectorHora form-control col-sm-12 col-md-12"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row"> <!-- dijous -->
+                        <div class="col-sm-2 col-md-2">
+                            <div class="btn-group-toggle col-sm-12 col-md-12" data-toggle="buttons">
+                                <label class="btn btn-secondary active col-sm-12 col-md-12">
+                                    <input id="dia4" type="checkbox" checked> Dijous
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-sm-10 col-md-10">
+                            <div class="row">
+                                <div class="col-sm-2 col-md-2">
+                                    <input id="dia4-h1" type="text" class="selectorHora form-control col-sm-12 col-md-12"/>
+                                </div>
+                                <div class="col-sm-1 col-md-1">
+                                    <p align="center">-</p>
+                                </div>
+                                <div class="col-sm-2 col-md-2">
+                                    <input id="dia4-h2" type="text" class="selectorHora form-control col-sm-12 col-md-12"/>
+                                </div>
+                                <div class="col-sm-1 col-md-1">
+
+                                </div>
+                                <div class="col-sm-2 col-md-2">
+                                    <input id="dia4-h3" type="text" class="selectorHora form-control col-sm-12 col-md-12"/>
+                                </div>
+                                <div class="col-sm-1 col-md-1">
+                                    <p align="center">-</p>
+                                </div>
+                                <div class="col-sm-2 col-md-2">
+                                    <input id="dia4-h4" type="text" class="selectorHora form-control col-sm-12 col-md-12"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row"> <!-- divendres -->
+                        <div class="col-sm-2 col-md-2">
+                            <div class="btn-group-toggle col-sm-12 col-md-12" data-toggle="buttons">
+                                <label class="btn btn-secondary active col-sm-12 col-md-12">
+                                    <input id="dia5" type="checkbox" checked> Divendres
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-sm-10 col-md-10">
+                            <div class="row">
+                                <div class="col-sm-2 col-md-2">
+                                    <input id="dia5-h1" type="text" class="selectorHora form-control col-sm-12 col-md-12"/>
+                                </div>
+                                <div class="col-sm-1 col-md-1">
+                                    <p align="center">-</p>
+                                </div>
+                                <div class="col-sm-2 col-md-2">
+                                    <input id="dia5-h2" type="text" class="selectorHora form-control col-sm-12 col-md-12"/>
+                                </div>
+                                <div class="col-sm-1 col-md-1">
+
+                                </div>
+                                <div class="col-sm-2 col-md-2">
+                                    <input id="dia5-h3" type="text" class="selectorHora form-control col-sm-12 col-md-12"/>
+                                </div>
+                                <div class="col-sm-1 col-md-1">
+                                    <p align="center">-</p>
+                                </div>
+                                <div class="col-sm-2 col-md-2">
+                                    <input id="dia5-h4" type="text" class="selectorHora form-control col-sm-12 col-md-12"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row"> <!-- dissabte -->
+                        <div class="col-sm-2 col-md-2">
+                            <div class="btn-group-toggle col-sm-12 col-md-12" data-toggle="buttons">
+                                <label class="btn btn-secondary active col-sm-12 col-md-12">
+                                    <input id="dia6" type="checkbox"> Dissabte
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-sm-10 col-md-10">
+                            <div class="row">
+                                <div class="col-sm-2 col-md-2">
+                                    <input id="dia6-h1" type="text" class="selectorHora form-control col-sm-12 col-md-12"/>
+                                </div>
+                                <div class="col-sm-1 col-md-1">
+                                    <p align="center">-</p>
+                                </div>
+                                <div class="col-sm-2 col-md-2">
+                                    <input id="dia6-h2" type="text" class="selectorHora form-control col-sm-12 col-md-12"/>
+                                </div>
+                                <div class="col-sm-1 col-md-1">
+
+                                </div>
+                                <div class="col-sm-2 col-md-2">
+                                    <input id="dia6-h3" type="text" class="selectorHora form-control col-sm-12 col-md-12"/>
+                                </div>
+                                <div class="col-sm-1 col-md-1">
+                                    <p align="center">-</p>
+                                </div>
+                                <div class="col-sm-2 col-md-2">
+                                    <input id="dia6-h4" type="text" class="selectorHora form-control col-sm-12 col-md-12"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row"> <!-- diumenge -->
+                        <div class="col-sm-2 col-md-2">
+                            <div class="btn-group-toggle col-sm-12 col-md-12" data-toggle="buttons">
+                                <label class="btn btn-secondary active col-sm-12 col-md-12">
+                                    <input id="dia7" type="checkbox"> Diumenge
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-sm-10 col-md-10">
+                            <div class="row">
+                                <div class="col-sm-2 col-md-2">
+                                    <input id="dia7-h1" type="text" class="selectorHora form-control col-sm-12 col-md-12"/>
+                                </div>
+                                <div class="col-sm-1 col-md-1">
+                                    <p align="center">-</p>
+                                </div>
+                                <div class="col-sm-2 col-md-2">
+                                    <input id="dia7-h2" type="text" class="selectorHora form-control col-sm-12 col-md-12"/>
+                                </div>
+                                <div class="col-sm-1 col-md-1">
+
+                                </div>
+                                <div class="col-sm-2 col-md-2">
+                                    <input id="dia7-h3" type="text" class="selectorHora form-control col-sm-12 col-md-12"/>
+                                </div>
+                                <div class="col-sm-1 col-md-1">
+                                    <p align="center">-</p>
+                                </div>
+                                <div class="col-sm-2 col-md-2">
+                                    <input id="dia7-h4" type="text" class="selectorHora form-control col-sm-12 col-md-12"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tanca</button>
+                    <button type="button" class="btn btn-primary">Guarda configuració</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </main>
 
 <footer class="text-muted">
@@ -145,6 +421,21 @@
 
 <script>
     $("#btnExercici").on('click', function(e) { window.open('https://www.youtube.com/results?search_query=exercicis+relaxaci%C3%B3')} );
+
+    $('.selectorHora').each(function() {
+        $(this).timepicker({
+            uiLibrary: 'bootstrap4',
+            size: 'small'
+        });
+    });
+
+
+    $('#dataNaixement').datepicker({
+        uiLibrary: 'bootstrap4',
+        format: 'dd/mm/yyyy',
+        locale: 'es-ca',
+        weekStartDay: 1
+    });
 </script>
 
 </body>

@@ -38,4 +38,9 @@ class bd {
             return true;
         }
     }
+    borraConfiguracio()
+    {
+        localStorage.removeItem('horari');
+        localStorage.removeItem('dataNaixement');
+    }
 }

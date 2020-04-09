@@ -19,4 +19,10 @@ class utils {
             return false;
         }
     }
+
+    getTime(hour, minute)
+    {
+        let h = moment().hour(hour).minute(minute).startOf('minute');
+        return h;
+    }
 }

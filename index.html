@@ -45,6 +45,9 @@
             background-color: #66CC00;
             border-color: #66CC00;
         }
+        input.bg-danger {
+            color: #fff !important;
+        }
     </style>
 </head>
 <body>
@@ -87,7 +90,6 @@
             <p class="lead text-muted">Aplicació amb consells per teletreballar més saludablement</p>
             <p>
                 <a href="#" class="btn btn-primary my-2" data-toggle="modal" data-target="#configModal">Configuració</a>
-                <a href="#" class="btn btn-secondary my-2">Borrar configuració</a>
             </p>
         </div>
     </section>
@@ -166,7 +168,7 @@
                         <div class="col-sm-2 col-md-2">
                             <div class="btn-group-toggle col-sm-12 col-md-12" data-toggle="buttons">
                                 <label class="btn btn-secondary active col-sm-12 col-md-12">
-                                    <input id="dia1" type="checkbox" checked> Dilluns
+                                    <input dia="1" id="dia1" type="checkbox" checked> Dilluns
                                 </label>
                             </div>
                         </div>
@@ -200,7 +202,7 @@
                         <div class="col-sm-2 col-md-2">
                             <div class="btn-group-toggle col-sm-12 col-md-12" data-toggle="buttons">
                                 <label class="btn btn-secondary active col-sm-12 col-md-12">
-                                    <input id="dia2" type="checkbox" checked> Dimarts
+                                    <input dia="2" id="dia2" type="checkbox" checked> Dimarts
                                 </label>
                             </div>
                         </div>
@@ -234,7 +236,7 @@
                         <div class="col-sm-2 col-md-2">
                             <div class="btn-group-toggle col-sm-12 col-md-12" data-toggle="buttons">
                                 <label class="btn btn-secondary active col-sm-12 col-md-12">
-                                    <input id="dia3" type="checkbox" checked> Dimecres
+                                    <input dia="3" id="dia3" type="checkbox" checked> Dimecres
                                 </label>
                             </div>
                         </div>
@@ -268,7 +270,7 @@
                         <div class="col-sm-2 col-md-2">
                             <div class="btn-group-toggle col-sm-12 col-md-12" data-toggle="buttons">
                                 <label class="btn btn-secondary active col-sm-12 col-md-12">
-                                    <input id="dia4" type="checkbox" checked> Dijous
+                                    <input dia="4" id="dia4" type="checkbox" checked> Dijous
                                 </label>
                             </div>
                         </div>
@@ -302,7 +304,7 @@
                         <div class="col-sm-2 col-md-2">
                             <div class="btn-group-toggle col-sm-12 col-md-12" data-toggle="buttons">
                                 <label class="btn btn-secondary active col-sm-12 col-md-12">
-                                    <input id="dia5" type="checkbox" checked> Divendres
+                                    <input dia="5" id="dia5" type="checkbox" checked> Divendres
                                 </label>
                             </div>
                         </div>
@@ -336,7 +338,7 @@
                         <div class="col-sm-2 col-md-2">
                             <div class="btn-group-toggle col-sm-12 col-md-12" data-toggle="buttons">
                                 <label class="btn btn-secondary active col-sm-12 col-md-12">
-                                    <input id="dia6" type="checkbox"> Dissabte
+                                    <input dia="6" id="dia6" type="checkbox"> Dissabte
                                 </label>
                             </div>
                         </div>
@@ -370,7 +372,7 @@
                         <div class="col-sm-2 col-md-2">
                             <div class="btn-group-toggle col-sm-12 col-md-12" data-toggle="buttons">
                                 <label class="btn btn-secondary active col-sm-12 col-md-12">
-                                    <input id="dia7" type="checkbox"> Diumenge
+                                    <input dia="7" id="dia7" type="checkbox"> Diumenge
                                 </label>
                             </div>
                         </div>
@@ -403,6 +405,7 @@
 
                 </div>
                 <div class="modal-footer">
+                    <button id="btnBorraConfig" type="button" class="btn btn-danger pull-left" data-dismiss="modal">Borra configuració</button>
                     <button id="btnTancar" type="button" class="btn btn-secondary" data-dismiss="modal">Tanca</button>
                     <button id="btnGuardarConfig" type="button" class="btn btn-primary">Guarda configuració</button>
                 </div>
@@ -423,6 +426,7 @@
 <script>
     let bbdd = new bd();
     let Messenger = new msg();
+    let util = new utils();
 
     $('.selectorHora').each(function() {
         $(this).timepicker({
@@ -441,11 +445,7 @@
     {
         for (d=1; d<=7; d++) {
             for (h = 1; h <= 4; h++) {
-                if (h <= 2) {
-                    $("#dia" + d + "-h" + h).val("");
-                } else {
-                    $("#dia" + d + "-h" + h).val("");
-                }
+                $("#dia" + d + "-h" + h).val("");
             }
         }
     }
@@ -473,9 +473,81 @@
             loop()
         }
     }
-    carregaConfig();
+
+    function validaHores()
+    {
+        let isCorrect = true;
+        for (d=1; d<=7; d++) {
+            let tram1 = [];
+            let tram2 = [];
+            for (h = 1; h <= 4; h++) {
+                if (h <= 2) {
+                    tram1.push($("#dia" + d + "-h" + h).val());
+                } else {
+                    tram2.push($("#dia" + d + "-h" + h).val());
+                }
+            }
+            let dia = [];
+            if (tram1.length == 2) dia.push(tram1);
+            if (tram2.length == 2) dia.push(tram2);
+
+            for (t = 0; t < dia.length; t++) {
+                hora1 = dia[t][0];
+                hora1 = hora1.split(':');
+                hora2 = dia[t][1];
+                hora2 = hora2.split(':');
+                $("#dia" + d + "-h" + ((t*2)+1)).removeClass('bg-danger');
+                $("#dia" + d + "-h" + ((t*2)+2)).removeClass('bg-danger');
+
+                if (Array.isArray(hora1) && Array.isArray(hora2) && hora1.length == 2 && hora2.length == 2) {
+                    hora1 = util.getTime(hora1[0], hora1[1]);
+                    hora2 = util.getTime(hora2[0], hora2[1]);
+                    if (hora1.isAfter(hora2)) {
+                        $("#dia" + d + "-h" + ((t*2)+2)).addClass('bg-danger');
+                        isCorrect = false;
+                    }
+                }
+            }
+            if (!isCorrect) break;
+        }
+        return isCorrect;
+    }
+
+    $(document).ready(function (e) {
+        carregaConfig();
+    });
 
     $("#btnExercici").on('click', function(e) { window.open('https://www.youtube.com/results?search_query=exercicis+relaxaci%C3%B3')} );
+
+    $("input[type='checkbox']").on('change', function(e) {
+        let dia = $(this).attr("dia");
+        if ($(this).is(':checked'))
+        {
+            let finded = false;
+            for (d=1; d<=7; d++) {
+                if (d != dia) {
+                    for (h = 1; h <= 4; h++) {
+                        if ($("#dia" + d + "-h" + h).val())
+                        {
+                            finded = d;
+                        }
+                        break;
+                    }
+                }
+                if (finded) break;
+            }
+            if (finded)
+            {
+                for (h = 1; h <= 4; h++) {
+                    $("#dia" + dia + "-h" + h).val($("#dia" + finded + "-h" + h).val());
+                }
+            }
+        } else {
+            for (h = 1; h <= 4; h++) {
+                $("#dia" + dia + "-h" + h).val("");
+            }
+        }
+    });
 
     $(".selectorHora").on("change", function(e) {
         let dia = $(this).attr("dia");
@@ -488,37 +560,54 @@
         });
     });
 
+    $("#btnBorraConfig").on('click', function (e) {
+        bbdd.borraConfiguracio();
+    });
     $("#btnTancar").on('click', function (e) {
         carregaConfig();
     });
     $("#btnGuardarConfig").on('click', function (e) {
-        let horari = [];
-        for (d=1; d<=7; d++)
-        {
-            let tram1 = [];
-            let tram2 = [];
-            for (h=1; h<=4; h++)
-            {
-                if (h<=2)
-                {
-                    tram1.push($("#dia" + d + "-h" + h).val());
-                } else {
-                    tram2.push($("#dia" + d + "-h" + h).val());
+        if (validaHores()) {
+            let horari = [];
+            for (d = 1; d <= 7; d++) {
+                let tram1 = [];
+                let tram2 = [];
+                for (h = 1; h <= 4; h++) {
+                    if (h <= 2) {
+                        tram1.push($("#dia" + d + "-h" + h).val());
+                    } else {
+                        tram2.push($("#dia" + d + "-h" + h).val());
+                    }
                 }
+                let dia = [];
+                if (tram1.length == 2) dia.push(tram1);
+                if (tram2.length == 2) dia.push(tram2);
+
+                for (t = 0; t < dia.length; t++) {
+                    hora1 = dia[t][0];
+                    hora1 = hora1.split(':');
+                    hora2 = dia[t][1];
+                    hora2 = hora2.split(':');
+                    if (Array.isArray(hora1) && Array.isArray(hora2) && hora1.length == 2 && hora2.length == 2) {
+                        hora1 = util.getTime(hora1[0], hora1[1]);
+                        hora2 = util.getTime(hora2[0], hora2[1]);
+                        if (hora1.isAfter(hora2)) {
+                            dia[t][1] = dia[t][0];
+                        }
+                    }
+                }
+                horari.push(dia);
             }
-            let dia = [];
-            if (tram1.length == 2) dia.push(tram1);
-            if (tram2.length == 2) dia.push(tram2);
-            horari.push(dia);
+            jsonToSave = {
+                "dataNaixement": $("#dataNaixement").val(),
+                "horari": horari
+            };
+            bbdd.guarda(jsonToSave);
+            Messenger.setConfig(bbdd.getConfig());
+            $('#configModal').modal('toggle');
+            carregaConfig();
+            loop();
         }
-        jsonToSave = {
-            "dataNaixement": $("#dataNaixement").val(),
-            "horari": horari
-        };
-        bbdd.guarda(jsonToSave);
-        Messenger.setConfig(bbdd.getConfig());
-        $('#configModal').modal('toggle');
-        loop();
     });
 
     let timeout_loop = false;

@@ -37,6 +37,7 @@
 
     <script src="./js/utils.js"></script>
     <script src="./js/bd.js"></script>
+    <script src="./js/msg.js"></script>
 
     <style>
         .btn-secondary:not(:disabled):not(.disabled).active, .btn-secondary:not(:disabled):not(.disabled):active, .show>.btn-secondary.dropdown-toggle
@@ -514,6 +515,20 @@
         bbdd = new bd();
         $('#configModal').modal('toggle');
     });
+
+    let Messenger = new msg();
+
+    function checkMessage()
+    {
+        bbdd = new bd();
+        let config = bbdd.getConfig();
+        Messenger.setConfig(config);
+        Messenger.check();
+    }
+
+    setTimeout(function(){
+        checkMessage()
+    }, 60000);
 </script>
 
 </body>

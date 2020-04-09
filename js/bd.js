@@ -19,6 +19,7 @@ class bd {
         {
             localStorage.setItem('horari', JSON.stringify(json.horari));
             localStorage.setItem('dataNaixement', json.dataNaixement);
+            this.carrega();
         }
         return true;
     }

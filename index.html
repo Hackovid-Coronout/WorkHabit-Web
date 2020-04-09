@@ -422,6 +422,7 @@
 
 <script>
     let bbdd = new bd();
+    let Messenger = new msg();
 
     $('.selectorHora').each(function() {
         $(this).timepicker({
@@ -512,23 +513,19 @@
             "horari": horari
         };
         bbdd.guarda(jsonToSave);
-        bbdd = new bd();
+        Messenger.setConfig(bbdd.getConfig());
         $('#configModal').modal('toggle');
     });
 
-    let Messenger = new msg();
-
-    function checkMessage()
+    let timeout_loop = false;
+    function loop()
     {
-        bbdd = new bd();
-        let config = bbdd.getConfig();
-        Messenger.setConfig(config);
-        Messenger.check();
+        if(timeout_loop !== false) clearTimeout(timeout_loop);
+        timeout_loop = setTimeout(function(){
+            Messenger.check();
+        }, 60000);
     }
 
-    setTimeout(function(){
-        checkMessage()
-    }, 60000);
 </script>
 
 </body>

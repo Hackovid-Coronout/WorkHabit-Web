@@ -54,7 +54,9 @@ class msg {
                         {
                             let inici = moment().hour(config.horari[week_day][periode][0][0]).minute(config.horari[week_day][periode][0][1]).startOf('minute');
                             let fi =    moment().hour(config.horari[week_day][periode][1][0]).minute(config.horari[week_day][periode][1][1]).startOf('minute');
-                            if(datetime.isSame(inici))
+
+                            let avis_inici = inici.clone().subtract(5, 'minutes');
+                            if(datetime.isSame(avis_inici))
                             {
                                 // Inici de feina
                                 Messenger.message('inici_feina');

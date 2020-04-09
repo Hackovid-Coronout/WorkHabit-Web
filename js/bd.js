@@ -35,6 +35,10 @@ class bd {
             }
             this.config.dataNaixement = localStorage.getItem('dataNaixement');
         }
+        else
+        {
+            this.config.defined = false;
+        }
     }
     getConfig()
     {

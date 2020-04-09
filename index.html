@@ -454,20 +454,24 @@
     {
         resetPantallaConfig();
         let conf = bbdd.getConfig();
-        $("#dataNaixement").val(conf.dataNaixement);
-        let horari = conf.horari;
-        for (d=0; d < horari.length; d++)
+        if(conf.defined)
         {
-            dia = d + 1;
-            tram = 1;
-            if (horari[d].length)
+            $("#dataNaixement").val(conf.dataNaixement);
+            let horari = conf.horari;
+            for (d=0; d < horari.length; d++)
             {
-                for (t=0; t < horari[d].length; t++)
+                dia = d + 1;
+                tram = 1;
+                if (horari[d].length)
                 {
-                    $("#dia" + dia + "-h" + ((t*2)+1)).val(horari[d][t][0]);
-                    $("#dia" + dia + "-h" + ((t*2)+2)).val(horari[d][t][1]);
+                    for (t=0; t < horari[d].length; t++)
+                    {
+                        $("#dia" + dia + "-h" + ((t*2)+1)).val(horari[d][t][0]);
+                        $("#dia" + dia + "-h" + ((t*2)+2)).val(horari[d][t][1]);
+                    }
                 }
             }
+            loop()
         }
     }
     carregaConfig();
@@ -515,6 +519,7 @@
         bbdd.guarda(jsonToSave);
         Messenger.setConfig(bbdd.getConfig());
         $('#configModal').modal('toggle');
+        loop();
     });
 
     let timeout_loop = false;

@@ -525,9 +525,12 @@
     function loop()
     {
         if(timeout_loop !== false) clearTimeout(timeout_loop);
-        timeout_loop = setTimeout(function(){
-            Messenger.check();
-        }, 60000);
+        if(Messenger.hasConfig())
+        {
+            timeout_loop = setTimeout(function(){
+                Messenger.check();
+            }, 60000);
+        }
     }
 
 </script>

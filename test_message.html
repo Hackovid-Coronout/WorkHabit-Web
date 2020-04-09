@@ -37,51 +37,38 @@
 
     <script src="./js/utils.js"></script>
     <script src="./js/bd.js"></script>
+    <script src="./js/msg.js"></script>
 </head>
 <body>
 <script>
-    let bd = new bd();
-    if (bd.teConfiguracio())
-    {
-        console.log("té config");
-    } else {
-        console.log("no té config");
-    }
+    let Messenger = new msg();
+    $(document).ready(function(){
+        let config = {
+            defined: false,
+            horari: [
+                [["9:00", "13:00"], ["15:00", "19:00"]],
+                [["9:00", "13:00"], ["15:00", "19:00"]],
+                [["9:00", "13:00"], ["15:00", "19:00"]],
+                [["9:00", "13:00"], ["15:00", "19:00"]],
+                [["9:00", "17:00"]],
+                [],
+                []
+            ],
+            dataNaixement: '21/09/1988'
+        };
 
-    let jsontest = {
-        "dataNaixement": "21/04/1978",
-        "horari": [
-            [["9:00", "13:00"], ["15:00", "19:00"]],
-            [["9:00", "13:00"], ["15:00", "19:00"]],
-            [["9:00", "13:00"], ["15:00", "19:00"]],
-            [["9:00", "13:00"], ["15:00", "19:00"]],
-            [["9:00", "17:00"]],
-            [],
-            []
-        ]
-    };
-    console.log("GuardarConfig: " + bd.guarda(jsontest));
-    if (bd.teConfiguracio())
-    {
-        console.log("té config");
-    } else {
-        console.log("no té config");
-    }
-    bd.borraConfiguracio();
-    if (bd.teConfiguracio())
-    {
-        console.log("té config");
+        let week_day = moment().weekday();
+        config['horari'][week_day] = [];
+        config['horari'][week_day].push(['06:00', moment().subtract(1, 'hours').format('HH')+':'+moment().subtract(1, 'hours').format('mm')]);
+        console.log(config['horari'][week_day]);
 
-        let msg = new msg();
-        msg.setConfig(bd.getConfig());
+        Messenger.setConfig(config);
+        Messenger.check();
         setTimeout(function(){
-            msg.check()
+            Messenger.check()
         }, 60000);
-    } else {
-        console.log("no té config");
-    }
-
-
+    });
 </script>
 </body>
+
 </html>

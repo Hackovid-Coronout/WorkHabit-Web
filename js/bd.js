@@ -1,6 +1,9 @@
 class bd {
-    horari = null;
-    dataNaixement = null;
+    config = {
+        defined: false,
+        horari: [],
+        dataNaixement: null
+    };
     util = null;
 
     constructor() {
@@ -23,13 +26,18 @@ class bd {
     {
         if (this.teConfiguracio())
         {
+            this.config.defined = true;
             let horariStr = localStorage.getItem('horari');
             if (this.util.IsJsonString(horariStr))
             {
-                this.horari = JSON.parse(horariStr);
+                this.config.horari = JSON.parse(horariStr);
             }
-            this.dataNaixement = localStorage.getItem('dataNaixement');
+            this.config.dataNaixement = localStorage.getItem('dataNaixement');
         }
+    }
+    getConfig()
+    {
+        return this.config;
     }
     teConfiguracio() {
         if(!localStorage.getItem('horari') || !localStorage.getItem('dataNaixement')) {

@@ -31,9 +31,14 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js" integrity="sha256-4iQZ6BVL4qNKlQ27TExEhBN1HFPvAvAMbFavKKosSWQ=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/locale/ca.js" integrity="sha256-NPnuFvS1oYkm3cZVq776l59xkaYkS+8ZRfK7uwbd70g=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gijgo/1.9.13/combined/js/gijgo.min.js" integrity="sha256-YZhUu69bCn9uTqQyKwwQ3GyRypS7eaxp/wmVS282sDI=" crossorigin="anonymous"></script>
-    <script src="./js/gijgo.es-ca.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gijgo/1.9.13/combined/css/gijgo.min.css" integrity="sha256-bH0WSMuCFoG/dxeox/5aOWmaZl729yDg4ylckwSRTfU=" crossorigin="anonymous" />
+
+    <script src="./js/bootstrap-material-datetimepicker.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-datetimepicker/2.7.1/css/bootstrap-material-datetimepicker.min.css" integrity="sha256-h472ZYEQbdqAvtB9tQqzpmBApho+fZfF8MmPwTHaqas=" crossorigin="anonymous" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/gijgo/1.9.13/combined/js/gijgo.min.js" integrity="sha256-YZhUu69bCn9uTqQyKwwQ3GyRypS7eaxp/wmVS282sDI=" crossorigin="anonymous"></script>-->
+<!--    <script src="./js/gijgo.es-ca.min.js"></script>-->
+<!--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gijgo/1.9.13/combined/css/gijgo.min.css" integrity="sha256-bH0WSMuCFoG/dxeox/5aOWmaZl729yDg4ylckwSRTfU=" crossorigin="anonymous" />-->
 
     <script src="./js/utils.js"></script>
     <script src="./js/bd.js"></script>
@@ -429,16 +434,23 @@
     let util = new utils();
 
     $('.selectorHora').each(function() {
-        $(this).timepicker({
-            uiLibrary: 'bootstrap4',
-            size: 'small'
+        $(this).bootstrapMaterialDatePicker({
+            format: 'HH:mm',
+            date: false,
+            shortTime: false,
+            switchOnClick: true,
+            lang : 'ca',
+            cancelText: 'Cancel·lar',
+            okText: 'Acceptar'
         });
     });
-    $('#dataNaixement').datepicker({
-        uiLibrary: 'bootstrap4',
-        format: 'dd/mm/yyyy',
-        locale: 'es-ca',
-        weekStartDay: 1
+    $('#dataNaixement').bootstrapMaterialDatePicker({
+        format: 'DD/MM/YYYY',
+        time: false,
+        lang : 'ca',
+        weekStart : 1,
+        cancelText: 'Cancel·lar',
+        okText: 'Acceptar'
     });
 
     function resetPantallaConfig()

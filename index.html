@@ -91,7 +91,19 @@
     <section class="jumbotron text-center">
         <div class="container">
             <h1>Treballa saludablement</h1>
-            <p class="lead text-muted">Aplicació amb consells per teletreballar més saludablement</p>
+            <p class="lead text-muted">
+                Aplicació amb consells per teletreballar més saludablement
+            </p>
+            <p id="PresentacioSenseConfiguracio">
+                Deixa que t'ajudem a concil·liar millor la feina i el teletreball.<br/>
+                T'avisem sempre que hagis de fer una parada per descansar i quan has de començar o acabar de treballar.<br/>
+                <br/>
+                Accedeix a la configuració per adaptar els teus avisos.
+            </p>
+            <p id="PresentacioAmbConfiguracio" style="display: none;">
+                Deixa que t'ajudem a concil·liar millor la feina i el teletreball.<br/>
+                Gràcies per utilitzar l'aplicació.
+            </p>
             <p>
                 <a href="#" class="btn btn-primary my-2" data-toggle="modal" data-target="#configModal">Configuració</a>
             </p>
@@ -111,7 +123,6 @@
                                 <div class="btn-group">
                                     <button id="btnExercici" type="button" class="btn btn-sm btn-outline-secondary">Veure</button>
                                 </div>
-                                <!--<small class="text-muted">9 mins</small>-->
                             </div>
                         </div>
                     </div>
@@ -122,10 +133,6 @@
                         <div class="card-body">
                             <p class="card-text">Truca a família i amics</p>
                             <div class="d-flex justify-content-between align-items-center">
-                                <!--<div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                </div>-->
-                                <!--<small class="text-muted">9 mins</small>-->
                             </div>
                         </div>
                     </div>
@@ -139,7 +146,6 @@
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-sm btn-outline-secondary">Configura</button>
                                 </div>
-                                <!--<small class="text-muted">9 mins</small>-->
                             </div>
                         </div>
                     </div>
@@ -422,7 +428,7 @@
 <footer class="text-muted">
     <div class="container">
         <p class="float-right">
-            <!--<a href="#">A dalt</a>-->
+
         </p>
     </div>
 </footer>
@@ -528,6 +534,18 @@
         carregaConfig();
     });
 
+    function canviaPresentacio()
+    {
+        if (bbdd.teConfiguracio())
+        {
+            $("#PresentacioAmbConfiguracio").show();
+            $("#PresentacioSenseConfiguracio").hide();
+        } else {
+            $("#PresentacioAmbConfiguracio").hide();
+            $("#PresentacioSenseConfiguracio").show();
+        }
+    }
+
     $("#btnExercici").on('click', function(e) { window.open('https://www.youtube.com/results?search_query=exercicis+relaxaci%C3%B3')} );
 
     $("input[type='checkbox']").on('change', function(e) {
@@ -617,6 +635,7 @@
             Messenger.setConfig(bbdd.getConfig());
             $('#configModal').modal('toggle');
             carregaConfig();
+            canviaPresentacio();
             loop();
         }
     });

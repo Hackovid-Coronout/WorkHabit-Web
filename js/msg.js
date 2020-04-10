@@ -4,11 +4,7 @@ class msg {
         horari: [],
         dataNaixement: null
     };
-    util = null;
 
-    constructor() {
-        this.util = new utils();
-    }
     setConfig(config)
     {
         if(config.defined)
@@ -141,7 +137,38 @@ class msg {
     message(msg_code)
     {
         // msg_code [inici_feina, mini-parada, parada, fi_feina, esport, social]
+        // className [base, error, success, info, warn]
         // TODO formatejar missatge i mostrar
-        alert(msg_code);
+        let message = '';
+        let className = '';
+        switch(msg_code)
+        {
+            case 'inici_feina':
+                message = msg_code;
+                className = 'warn';
+                break;
+            case 'mini-parada':
+                message = msg_code;
+                className = 'info';
+                break;
+            case 'parada':
+                message = msg_code;
+                className = 'info';
+                break;
+            case 'fi_feina':
+                message = msg_code;
+                className = 'success';
+                break;
+            case 'esport':
+                message = msg_code;
+                className = 'base';
+                break;
+            case 'social':
+                message = msg_code;
+                className = 'base';
+                break;
+        }
+
+        notification(message, className);
     }
 }

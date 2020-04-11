@@ -33,35 +33,38 @@ class msg {
                     config.horari[week_day].forEach(function(j, periode){
                         if(config.horari[week_day][periode].length === 2)
                         {
-                            let inici = moment().hour(config.horari[week_day][periode][0][0]).minute(config.horari[week_day][periode][0][1]).startOf('minute');
-                            let fi =    moment().hour(config.horari[week_day][periode][1][0]).minute(config.horari[week_day][periode][1][1]).startOf('minute');
+                            if(config.horari[week_day][periode][0][0] !== '' && config.horari[week_day][periode][0][1] !== '' && config.horari[week_day][periode][1][0] !== '' && config.horari[week_day][periode][1][1] !== '')
+                            {
+                                let inici = moment().hour(config.horari[week_day][periode][0][0]).minute(config.horari[week_day][periode][0][1]).startOf('minute');
+                                let fi =    moment().hour(config.horari[week_day][periode][1][0]).minute(config.horari[week_day][periode][1][1]).startOf('minute');
 
-                            let avis_inici = inici.clone().subtract(5, 'minutes');
-                            if(datetime.isSame(avis_inici))
-                            {
-                                // Inici de feina
-                                Messenger.message('inici_feina');
-                            }
-                            else if(datetime.isAfter(inici) && datetime.isBefore(fi))
-                            {
-                                if(datetime.minutes() === inici.minutes())
+                                let avis_inici = inici.clone().subtract(5, 'minutes');
+                                if(datetime.isSame(avis_inici))
                                 {
-                                    if((datetime.hour() - inici.hour()) % 2 === 1)
+                                    // Inici de feina
+                                    Messenger.message('inici_feina');
+                                }
+                                else if(datetime.isAfter(inici) && datetime.isBefore(fi))
+                                {
+                                    if(datetime.minutes() === inici.minutes())
                                     {
-                                        // Mini-Parada
-                                        Messenger.message('mini-parada');
-                                    }
-                                    else
-                                    {
-                                        // Parada
-                                        Messenger.message('parada');
+                                        if((datetime.hour() - inici.hour()) % 2 === 1)
+                                        {
+                                            // Mini-Parada
+                                            Messenger.message('mini-parada');
+                                        }
+                                        else
+                                        {
+                                            // Parada
+                                            Messenger.message('parada');
+                                        }
                                     }
                                 }
-                            }
-                            else if(datetime.isSame(fi))
-                            {
-                                // Fi de feina
-                                Messenger.message('fi_feina');
+                                else if(datetime.isSame(fi))
+                                {
+                                    // Fi de feina
+                                    Messenger.message('fi_feina');
+                                }
                             }
                         }
                     });

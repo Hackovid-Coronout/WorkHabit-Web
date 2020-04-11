@@ -424,12 +424,46 @@
         </div>
     </div>
 
+    <div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <p>
+                        <strong>Demostració</strong><br/>
+                        A continuació, per no haver d'esperar a que els missatges apareguin en funció de l'horari establert, teniu la opció de visualitzar els missatges que us apareixeran.
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <button data-message="inici_feina" type="button" class="btnDemo col-md-12 btn btn-sm btn-outline-secondary">Inici feina</button>
+                </div>
+                <div class="col-md-4">
+                    <button data-message="fi_feina" type="button" class="btnDemo col-md-12 btn btn-sm btn-outline-secondary">Fi feina</button>
+                </div>
+                <div class="col-md-4">
+                    <button data-message="social" type="button" class="btnDemo col-md-12 btn btn-sm btn-outline-secondary">Trucada</button>
+                </div>
+            </div><br/>
+            <div class="row">
+                <div class="col-md-4">
+                    <button data-message="mini-parada" type="button" class="btnDemo col-md-12 btn btn-sm btn-outline-secondary">Parada petita</button>
+                </div>
+                <div class="col-md-4">
+                    <button data-message="parada" type="button" class="btnDemo col-md-12 btn btn-sm btn-outline-secondary">Parada gran</button>
+                </div>
+                <div class="col-md-4">
+                    <button data-message="esport" type="button" class="btnDemo col-md-12 btn btn-sm btn-outline-secondary">Exercici</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </main>
 
 <footer class="text-muted">
     <div class="container">
         <p class="float-right">
-
+            <br/>
         </p>
     </div>
 </footer>
@@ -461,6 +495,10 @@
         okText: 'Acceptar'
     });*/
 
+    $(".btnDemo").on('click', function (e) {
+        let missatge = $(this).attr("data-message");
+        Messenger.message(missatge);
+    });
     function resetPantallaConfig()
     {
         for (d=1; d<=7; d++) {

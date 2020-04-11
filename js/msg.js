@@ -171,12 +171,20 @@ class msg {
                 break;
         }
 
-        let message = '';
-        message += '<b>'+titol+'</b><br/>'+descripcio;
+        let message = $('<div/>');
+        message.append(
+            $('<b/>').html(titol)
+        ).append(
+            $('<br/>')
+        ).append(descripcio);
         if(link)
         {
             if(!titollink) titollink = link;
-            message += '<br/><a href="'+link+'">'+titollink+'</a>';
+            message.append(
+                $('<br/>')
+            ).append(
+                $('<a/>').attr('href', link).html(titollink)
+            );
         }
 
         notification(message, className);

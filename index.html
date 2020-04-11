@@ -55,7 +55,15 @@
 
         .notifyjs-corner {
             left: 12% !important;
-            max-width: 75%;
+            width: 75%;
+        }
+
+        .notifyjs-wrapper {
+            margin: auto !important;
+        }
+
+        .notifyjs-container {
+            width: 100% !important;
         }
 
         .notifyjs-bootstraphtml-base span {
@@ -698,6 +706,7 @@
             $('#configModal').modal('toggle');
             carregaConfig();
             canviaPresentacio();
+            Messenger.message('configuracio-guardada');
             loop();
         }
     });

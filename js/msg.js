@@ -169,6 +169,11 @@ class msg {
                 descripcio = "La teva família i amics volen saber com estàs. Fes-los una trucada! Aixi desconnectes de la feina i disfrutaràs mes del teu temps d'oci";
                 className = 'base';
                 break;
+            case 'configuracio-guardada':
+                titol = "Configuració guardada";
+                descripcio = "S'ha guardat correctament la configuració. Els missatges te'ls mostrarem en aquest format.";
+                className = 'success';
+                break;
         }
 
         let message = $('<div/>');

@@ -126,35 +126,57 @@ class msg {
     {
         // msg_code [inici_feina, mini-parada, parada, fi_feina, esport, social]
         // className [base, error, success, info, warn]
-        // TODO formatejar missatge i mostrar
-        let message = '';
+        let titol = '';
+        let descripcio = '';
+        let titollink = '';
+        let link = '';
         let className = '';
         switch(msg_code)
         {
             case 'inici_feina':
-                message = msg_code;
+                titol = "D'aquí cinc minuts comença la feina, ja estàs preparat?";
+                descripcio = "És important que comencem la feina amb plena energia. Hem d'haver esmorzat, hem de tenir una bona higiene personal i cal que ens vestim perquè el nostre cap entengui que estem treballant. S'ha de disposar d'un bon ambient per poder-se concentrar. Procura tenir bona il·luminació i una bona postura per evitar possibles mals d'esquena.";
                 className = 'warn';
                 break;
             case 'mini-parada':
-                message = msg_code;
+                titol = "Què et sembla si parem 5 minuts?";
+                descripcio = "Els teus ulls porten una bona estona mirant la pantalla. És recomanable que estiris les cames i miris per la finestra per aconseguir que els ulls enfoquin a diferents distàncies i es relaxin.";
+                titollink = "Petites relaxacions";
+                link = "https://www.youtube.com/watch?v=gL20MtA_89s";
                 className = 'info';
                 break;
             case 'parada':
-                message = msg_code;
+                titol = "Què et sembla si parem 10 minuts?";
+                descripcio = "Aixeca't, pren un got d'aigua, fes una mica d'estiraments. Fent 10 minuts de Tai Chi mouràs tots els músculs del teu cos, ho agrairàs tant fisicament com mentalment i serà mes fàcil concentrar-te.";
+                titollink = "";
+                link = "https://www.youtube.com/watch?v=cEOS2zoyQw4";
                 className = 'info';
                 break;
             case 'fi_feina':
-                message = msg_code;
+                titol = "Ja és hora d'acabar la feina";
+                descripcio = "És una bona pràctica apuntar-te on has acabat perquè demà et sigui més fàcil continuar. Per molta feina que tinguis, no l'acabaràs avui. No et passis fent més hores del compte perquè el teu cos se'n resentirà";
                 className = 'success';
                 break;
             case 'esport':
-                message = msg_code;
+                titol = "És hora de fer exercici, mou-te!";
+                descripcio = "Cada dia hem de fer una mica d'exercici i, quan s'està fent teletreball, és molt habitual deixar-se en aquest aspecte.<br/>No calen grans aparells per exercitar i estirar els músculs. Tingues inventiva i veuràs com et poden ajudar un parell de garrafes d'aigua 😉";
+                titollink = "Exercici";
+                link = "https://www.youtube.com/watch?v=iS1ClEUZJ20";
                 className = 'base';
                 break;
             case 'social':
-                message = msg_code;
+                titol = "Què et sembla si fem una trucada?";
+                descripcio = "La teva família i amics volen saber com estàs. Fes-los una trucada! Aixi desconnectes de la feina i disfrutaràs mes del teu temps d'oci";
                 className = 'base';
                 break;
+        }
+
+        let message = '';
+        message += '<b>'+titol+'</b><br/>'+descripcio;
+        if(link)
+        {
+            if(!titollink) titollink = link;
+            message += '<br/><a href="'+link+'">'+titollink+'</a>';
         }
 
         notification(message, className);

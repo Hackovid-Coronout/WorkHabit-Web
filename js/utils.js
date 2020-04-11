@@ -1,5 +1,5 @@
 class utils {
-    IsJsonString(str) {
+    IsJson(str) {
         try {
             JSON.parse(str);
         } catch (e) {
@@ -8,7 +8,7 @@ class utils {
         return true;
     }
 
-    isJSON (something) {
+    isObject (something) {
         if (typeof something != 'string')
             something = JSON.stringify(something);
 

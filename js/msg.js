@@ -9,22 +9,7 @@ class msg {
     {
         if(config.defined)
         {
-            this.config = config;
-            if(config.horari.length)
-            {
-                config.horari.forEach(function(i, dia){
-                    if(typeof config.horari[dia] !== 'undefined' && config.horari[dia].length)
-                    {
-                        config.horari[dia].forEach(function(j, periode){
-                            if(config.horari[dia][periode].length === 2)
-                            {
-                                config.horari[dia][periode][0] = config.horari[dia][periode][0].split(':');
-                                config.horari[dia][periode][1] = config.horari[dia][periode][1].split(':');
-                            }
-                        });
-                    }
-                });
-            }
+            this.config = Object.assign({}, config);
         }
     }
     hasConfig()

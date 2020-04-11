@@ -485,8 +485,10 @@
                 {
                     for (t=0; t < horari[d].length; t++)
                     {
-                        $("#dia" + dia + "-h" + ((t*2)+1)).val(horari[d][t][0]);
-                        $("#dia" + dia + "-h" + ((t*2)+2)).val(horari[d][t][1]);
+                        let ini = horari[d][t][0].length ? horari[d][t][0].join(':') : '';
+                        $("#dia" + dia + "-h" + ((t*2)+1)).val(ini);
+                        let fi = horari[d][t][1].length ? horari[d][t][1].join(':') : '';
+                        $("#dia" + dia + "-h" + ((t*2)+2)).val(fi);
                     }
                 }
             }
@@ -617,9 +619,9 @@
                 let tram2 = [];
                 for (h = 1; h <= 4; h++) {
                     if (h <= 2) {
-                        tram1.push($("#dia" + d + "-h" + h).val());
+                        tram1.push($("#dia" + d + "-h" + h).val().split(':'));
                     } else {
-                        tram2.push($("#dia" + d + "-h" + h).val());
+                        tram2.push($("#dia" + d + "-h" + h).val().split(':'));
                     }
                 }
                 let dia = [];
@@ -628,9 +630,7 @@
 
                 for (t = 0; t < dia.length; t++) {
                     hora1 = dia[t][0];
-                    hora1 = hora1.split(':');
                     hora2 = dia[t][1];
-                    hora2 = hora2.split(':');
                     if (Array.isArray(hora1) && Array.isArray(hora2) && hora1.length == 2 && hora2.length == 2) {
                         hora1 = util.getTime(hora1[0], hora1[1]);
                         hora2 = util.getTime(hora2[0], hora2[1]);

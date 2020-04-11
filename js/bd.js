@@ -10,15 +10,15 @@ class bd {
         this.util = new utils();
         this.carrega();
     }
-    guarda(json) {
-        if (!this.util.isJSON(json))
+    guarda(obj) {
+        if (!this.util.isObject(obj))
         {
             return false;
         }
-        if (json.horari) // && json.dataNaixement
+        if (obj.horari) // && json.dataNaixement
         {
-            localStorage.setItem('horari', JSON.stringify(json.horari));
-            //localStorage.setItem('dataNaixement', json.dataNaixement);
+            localStorage.setItem('horari', JSON.stringify(obj.horari));
+            //localStorage.setItem('dataNaixement', obj.dataNaixement);
             this.carrega();
         }
         return true;
@@ -29,7 +29,7 @@ class bd {
         {
             this.config.defined = true;
             let horariStr = localStorage.getItem('horari');
-            if (this.util.IsJsonString(horariStr))
+            if (this.util.IsJson(horariStr))
             {
                 this.config.horari = JSON.parse(horariStr);
             }

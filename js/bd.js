@@ -1,8 +1,8 @@
 class bd {
     config = {
         defined: false,
-        horari: [],
-        dataNaixement: null
+        horari: [] /*,
+        dataNaixement: null*/
     };
     util = null;
 
@@ -15,10 +15,10 @@ class bd {
         {
             return false;
         }
-        if (json.horari && json.dataNaixement)
+        if (json.horari) // && json.dataNaixement
         {
             localStorage.setItem('horari', JSON.stringify(json.horari));
-            localStorage.setItem('dataNaixement', json.dataNaixement);
+            //localStorage.setItem('dataNaixement', json.dataNaixement);
             this.carrega();
         }
         return true;
@@ -33,7 +33,7 @@ class bd {
             {
                 this.config.horari = JSON.parse(horariStr);
             }
-            this.config.dataNaixement = localStorage.getItem('dataNaixement');
+            //this.config.dataNaixement = localStorage.getItem('dataNaixement');
         }
         else
         {
@@ -45,7 +45,7 @@ class bd {
         return this.config;
     }
     teConfiguracio() {
-        if(!localStorage.getItem('horari') || !localStorage.getItem('dataNaixement')) {
+        if(!localStorage.getItem('horari')) { // || !localStorage.getItem('dataNaixement')
             return false;
         } else {
             return true;
@@ -54,6 +54,7 @@ class bd {
     borraConfiguracio()
     {
         localStorage.removeItem('horari');
-        localStorage.removeItem('dataNaixement');
+        //localStorage.removeItem('dataNaixement');
+        this.carrega();
     }
 }

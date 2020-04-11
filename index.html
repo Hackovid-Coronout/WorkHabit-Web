@@ -166,14 +166,14 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <div class="row">
+                    <!--<div class="row">
                         <div class="col-sm-2 col-md-2">
                             <label for="dataNaixement">Data naixement</label>
                         </div>
                         <div class="col-sm-4 col-md-4">
                             <input id="dataNaixement" type="text">
                         </div>
-                    </div>
+                    </div>-->
                     <h6>Horari laboral:</h6>
                     <div class="row"> <!-- dilluns -->
                         <div class="col-sm-2 col-md-2">
@@ -452,14 +452,14 @@
             clearText: 'Esborrar'
         });
     });
-    $('#dataNaixement').bootstrapMaterialDatePicker({
+    /*$('#dataNaixement').bootstrapMaterialDatePicker({
         format: 'DD/MM/YYYY',
         time: false,
         lang : 'ca',
         weekStart : 1,
         cancelText: 'Cancel·lar',
         okText: 'Acceptar'
-    });
+    });*/
 
     function resetPantallaConfig()
     {
@@ -476,7 +476,7 @@
         let conf = bbdd.getConfig();
         if(conf.defined)
         {
-            $("#dataNaixement").val(conf.dataNaixement);
+            /*$("#dataNaixement").val(conf.dataNaixement);*/
             let horari = conf.horari;
             for (d=0; d < horari.length; d++)
             {
@@ -595,6 +595,9 @@
 
     $("#btnBorraConfig").on('click', function (e) {
         bbdd.borraConfiguracio();
+        resetPantallaConfig();
+        carregaConfig();
+        canviaPresentacio();
     });
     $("#btnTancar").on('click', function (e) {
         carregaConfig();
@@ -632,7 +635,7 @@
                 horari.push(dia);
             }
             jsonToSave = {
-                "dataNaixement": $("#dataNaixement").val(),
+                /*"dataNaixement": $("#dataNaixement").val(),*/
                 "horari": horari
             };
             bbdd.guarda(jsonToSave);

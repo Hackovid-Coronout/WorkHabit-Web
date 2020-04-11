@@ -101,7 +101,8 @@
                 Accedeix a la configuració per adaptar els teus avisos.
             </p>
             <p id="PresentacioAmbConfiguracio" style="display: none;">
-                Deixa que t'ajudem a concil·liar millor la feina i el teletreball.<br/>
+                Deixa que t'ajudem a concil·liar millor la feina i el teletreball.<br/><br/>
+                Ara que ja ho tens configurat, t'avisarem cada cop que hagis de fer una parada/pausa mitjançant avisos<br/>que podràs veure a l'aplicació.
                 Gràcies per utilitzar l'aplicació.
             </p>
             <p>
@@ -532,6 +533,7 @@
 
     $(document).ready(function (e) {
         carregaConfig();
+        canviaPresentacio();
     });
 
     function canviaPresentacio()

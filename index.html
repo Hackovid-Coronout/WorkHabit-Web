@@ -526,6 +526,13 @@
                         $("#dia" + d + "-h" + ((t*2)+2)).addClass('bg-danger');
                         isCorrect = false;
                     }
+                } else {
+                    if ((hora1.length == 2 && hora2.length != 2) || (hora1.length != 2 && hora2.length == 2))
+                    {
+                        $("#dia" + d + "-h" + ((t*2)+1)).addClass('bg-danger');
+                        $("#dia" + d + "-h" + ((t*2)+2)).addClass('bg-danger');
+                        isCorrect = false;
+                    }
                 }
             }
             if (!isCorrect) break;
